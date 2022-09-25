@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: IBOutlets
     @IBOutlet var colorView: UIView!
     
     @IBOutlet var redSlider: UISlider!
@@ -30,6 +31,7 @@ class ViewController: UIViewController {
         updateColor()
     }
 
+    // MARK: IBActions
     @IBAction func redSliderChanged() {
         redSliderLabel.text = String(format: "%.2f", redSlider.value)
         updateColor()
@@ -45,6 +47,7 @@ class ViewController: UIViewController {
         updateColor()
     }
     
+    // MARK: Private functions
     private func updateColor() {
         colorView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
