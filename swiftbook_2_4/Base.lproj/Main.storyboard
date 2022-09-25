@@ -78,6 +78,9 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="4eD-kB-MoO">
                                                 <rect key="frame" x="130" y="0.0" width="254" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
+                                                <connections>
+                                                    <action selector="greenSliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="fc5-tr-bvg"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                     </stackView>
@@ -105,6 +108,9 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="WGd-1F-Msp">
                                                 <rect key="frame" x="130" y="0.0" width="254" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemBlueColor"/>
+                                                <connections>
+                                                    <action selector="blueSliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="AX9-8x-3vv"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                     </stackView>
@@ -126,6 +132,7 @@
                     <connections>
                         <outlet property="blueSlider" destination="WGd-1F-Msp" id="ale-D1-yeV"/>
                         <outlet property="blueSliderLabel" destination="woG-Rn-TsR" id="deo-V7-Kl0"/>
+                        <outlet property="colorView" destination="nuD-Lb-Va8" id="FGR-2H-a2o"/>
                         <outlet property="greenSlider" destination="4eD-kB-MoO" id="Xnh-C6-FoO"/>
                         <outlet property="greenSliderLabel" destination="CLU-NG-gqU" id="5wY-I7-dzd"/>
                         <outlet property="redSlider" destination="nZB-eR-AoU" id="I2r-yb-7R8"/>
