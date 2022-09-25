@@ -17,14 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuD-Lb-Va8">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuD-Lb-Va8" userLabel="colorView">
                                 <rect key="frame" x="16" y="76" width="382" height="136"/>
                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="MDO-PW-C7k">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="MDO-PW-C7k" userLabel="sliderStack">
                                 <rect key="frame" x="16" y="264" width="382" height="112"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="XAL-Jj-3Pl">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="XAL-Jj-3Pl" userLabel="redSliderStack">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBp-7Q-rHu">
@@ -48,10 +48,13 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nZB-eR-AoU">
                                                 <rect key="frame" x="130" y="0.0" width="254" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemRedColor"/>
+                                                <connections>
+                                                    <action selector="redSliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="E3w-Yk-xmm"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="uCP-Xx-cND">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="uCP-Xx-cND" userLabel="greenSliderStack">
                                         <rect key="frame" x="0.0" y="41" width="382" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Green:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fu-An-IBD">
@@ -78,7 +81,7 @@
                                             </slider>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="DZ5-fO-a6b">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="DZ5-fO-a6b" userLabel="blueSliderStack">
                                         <rect key="frame" x="0.0" y="82" width="382" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blue:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiL-x9-96x">
@@ -120,6 +123,14 @@
                             <constraint firstItem="MDO-PW-C7k" firstAttribute="top" secondItem="nuD-Lb-Va8" secondAttribute="bottom" constant="52" id="xr4-Ni-gzu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="blueSlider" destination="WGd-1F-Msp" id="ale-D1-yeV"/>
+                        <outlet property="blueSliderLabel" destination="woG-Rn-TsR" id="deo-V7-Kl0"/>
+                        <outlet property="greenSlider" destination="4eD-kB-MoO" id="Xnh-C6-FoO"/>
+                        <outlet property="greenSliderLabel" destination="CLU-NG-gqU" id="5wY-I7-dzd"/>
+                        <outlet property="redSlider" destination="nZB-eR-AoU" id="I2r-yb-7R8"/>
+                        <outlet property="redSliderLabel" destination="XGZ-FE-enE" id="Cr3-MC-i10"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
