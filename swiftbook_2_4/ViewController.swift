@@ -20,12 +20,16 @@ class ViewController: UIViewController {
     @IBOutlet var greenSliderLabel: UILabel!
     @IBOutlet var blueSliderLabel: UILabel!
     
+    @IBOutlet var redSliderTF: UITextField!
+    @IBOutlet var greenSliderTF: UITextField!
+    @IBOutlet var blueSliderTF: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        redSliderLabel.text = String(format: "%.2f", redSlider.value)
-        greenSliderLabel.text = String(format: "%.2f", greenSlider.value)
-        blueSliderLabel.text = String(format: "%.2f", blueSlider.value)
+        labelsUpdate(for: .red)
+        labelsUpdate(for: .green)
+        labelsUpdate(for: .blue)
         
         colorView.layer.cornerRadius = 10
         updateColor()
@@ -33,17 +37,17 @@ class ViewController: UIViewController {
 
     // MARK: IBActions
     @IBAction func redSliderChanged() {
-        redSliderLabel.text = String(format: "%.2f", redSlider.value)
+        labelsUpdate(for: .red)
         updateColor()
     }
     
     @IBAction func greenSliderChanged() {
-        greenSliderLabel.text = String(format: "%.2f", greenSlider.value)
+        labelsUpdate(for: .green)
         updateColor()
     }
     
     @IBAction func blueSliderChanged() {
-        blueSliderLabel.text = String(format: "%.2f", blueSlider.value)
+        labelsUpdate(for: .blue)
         updateColor()
     }
     
@@ -58,3 +62,26 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController {
+    enum SliderType {
+        case red, green, blue
+    }
+    
+    private func labelsUpdate(for sliderColor: SliderType) {
+        let value: Float
+        switch sliderColor {
+        case .red:
+            value = redSlider.value
+            redSliderLabel.text = String(format: "%.2f", value)
+            redSliderTF.text = String(format: "%.2f", value)
+        case .green:
+            value = greenSlider.value
+            greenSliderLabel.text = String(format: "%.2f", value)
+            greenSliderTF.text = String(format: "%.2f", value)
+        case .blue:
+            value = blueSlider.value
+            blueSliderLabel.text = String(format: "%.2f", value)
+            blueSliderTF.text = String(format: "%.2f", value)
+        }
+    }
+}
