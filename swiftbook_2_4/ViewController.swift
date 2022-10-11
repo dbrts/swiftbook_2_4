@@ -36,18 +36,16 @@ class ViewController: UIViewController {
     }
 
     // MARK: IBActions
-    @IBAction func redSliderChanged() {
-        labelsUpdate(for: .red)
-        updateColor()
-    }
-    
-    @IBAction func greenSliderChanged() {
-        labelsUpdate(for: .green)
-        updateColor()
-    }
-    
-    @IBAction func blueSliderChanged() {
-        labelsUpdate(for: .blue)
+    @IBAction func sliderChanged(_ sender: UISlider) {
+        switch sender {
+        case redSlider:
+            labelsUpdate(for: .red)
+        case greenSlider:
+            labelsUpdate(for: .green)
+        default:
+            labelsUpdate(for: .blue)
+        }
+        
         updateColor()
     }
     
