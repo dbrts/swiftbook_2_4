@@ -57,13 +57,13 @@ class SettingsViewController: UIViewController {
         switch sender {
         case redSlider:
             redValue = CGFloat(redSlider.value)
-            labelsUpdate(for: .red)
+            updateLabel(for: .red)
         case greenSlider:
             greenValue = CGFloat(greenSlider.value)
-            labelsUpdate(for: .green)
+            updateLabel(for: .green)
         default:
             blueValue = CGFloat(blueSlider.value)
-            labelsUpdate(for: .blue)
+            updateLabel(for: .blue)
         }
         
         updateColorViewer()
@@ -98,9 +98,9 @@ extension SettingsViewController {
     }
     
     private func initLabels() {
-        labelsUpdate(for: .red)
-        labelsUpdate(for: .green)
-        labelsUpdate(for: .blue)
+        updateLabel(for: .red)
+        updateLabel(for: .green)
+        updateLabel(for: .blue)
     }
     
     private func initTextFieldDelegates() {
@@ -109,7 +109,7 @@ extension SettingsViewController {
         blueSliderTF.delegate = self
     }
     
-    private func labelsUpdate(for sliderColor: SliderType) {
+    private func updateLabel(for sliderColor: SliderType) {
         switch sliderColor {
         case .red:
             redSliderLabel.text = String(format: "%.2f", redValue)
@@ -127,7 +127,7 @@ extension SettingsViewController {
         view.endEditing(true)
     }
     
-    private func showAlert(withTitle title: String, andMessage message:String, textField: UITextField? = nil) {
+    private func showAlert(withTitle title: String, andMessage message: String, textField: UITextField? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             textField?.text = ""
@@ -137,10 +137,10 @@ extension SettingsViewController {
     }
     
     private func stringToCGFloat(_ stringNumber: String?) -> CGFloat? {
-        guard let stringNumber = stringNumber else { return nil }
-        guard let number = NumberFormatter().number(from: stringNumber) else { return nil }
+        guard let stringNumber = stringNumber,
+              let number = NumberFormatter().number(from: stringNumber) else { return nil }
         let floatedNumber = CGFloat(truncating: number)
-        let eps = 0.00001
+        let eps = CGFloat(0.00001)
         return floatedNumber > -eps && floatedNumber < 1 + eps
             ? floatedNumber
             : nil
@@ -178,15 +178,15 @@ extension SettingsViewController: UITextFieldDelegate {
         case redSliderTF:
             redValue = value
             redSlider.setValue(Float(redValue), animated: true)
-            labelsUpdate(for: .red)
+            updateLabel(for: .red)
         case greenSliderTF:
             greenValue = value
             greenSlider.setValue(Float(greenValue), animated: true)
-            labelsUpdate(for: .green)
+            updateLabel(for: .green)
         default:
             blueValue = value
             blueSlider.setValue(Float(blueValue), animated: true)
-            labelsUpdate(for: .blue)
+            updateLabel(for: .blue)
         }
         
         updateColorViewer()
