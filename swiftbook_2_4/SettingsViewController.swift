@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SettingsViewController: UIViewController {
 
     // MARK: IBOutlets
     @IBOutlet var colorView: UIView!
@@ -24,8 +24,21 @@ class ViewController: UIViewController {
     @IBOutlet var greenSliderTF: UITextField!
     @IBOutlet var blueSliderTF: UITextField!
     
+    var color: UIColor!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+
+        redSlider.value = Float(red)
+        greenSlider.value = Float(green)
+        blueSlider.value = Float(blue)
     
         labelsUpdate(for: .red)
         labelsUpdate(for: .green)
@@ -60,7 +73,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController {
+extension SettingsViewController {
     enum SliderType {
         case red, green, blue
     }
