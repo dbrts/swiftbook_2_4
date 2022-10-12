@@ -138,14 +138,12 @@ extension SettingsViewController {
     
     private func stringToCGFloat(_ stringNumber: String?) -> CGFloat? {
         guard let stringNumber = stringNumber else { return nil }
-        if let number = NumberFormatter().number(from: stringNumber) {
-            let floatedNumber = CGFloat(truncating: number)
-            return floatedNumber > 0 && floatedNumber < 1.00001
-                ? floatedNumber
-                : nil
-        } else {
-            return nil
-        }
+        guard let number = NumberFormatter().number(from: stringNumber) else { return nil }
+        let floatedNumber = CGFloat(truncating: number)
+        let eps = 0.00001
+        return floatedNumber > -eps && floatedNumber < 1 + eps
+            ? floatedNumber
+            : nil
     }
     
     private func createToolbars() {
