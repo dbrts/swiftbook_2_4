@@ -11,7 +11,6 @@ class SettingsViewController: UIViewController {
 
     // MARK: IBOutlets
     @IBOutlet var colorView: UIView!
-    
     @IBOutlet var redSlider: UISlider!
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
@@ -24,87 +23,89 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenSliderTF: UITextField!
     @IBOutlet var blueSliderTF: UITextField!
     
+    // MARK: Public variables
     var color: UIColor!
     var delegate: SettingsViewControllerDelegate!
     
+    // MARK: Private variables
+    private var redValue: CGFloat = 0
+    private var greenValue: CGFloat = 0
+    private var blueValue: CGFloat = 0
+    private var alphaValue: CGFloat = 0
+
+    // MARK: Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var red: CGFloat = 0
-        var green: CGFloat = 0
-        var blue: CGFloat = 0
-        var alpha: CGFloat = 0
-
-        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-
-        redSlider.value = Float(red)
-        greenSlider.value = Float(green)
-        blueSlider.value = Float(blue)
-    
-        labelsUpdate(for: .red)
-        labelsUpdate(for: .green)
-        labelsUpdate(for: .blue)
-        
         colorView.layer.cornerRadius = 10
-        updateColor()
+        
+        color.getRed(&redValue, green: &greenValue, blue: &blueValue, alpha: &alphaValue)
+        initSliders()
+        initLabels()
+        updateColorViewer()
     }
 
     // MARK: IBActions
     @IBAction func sliderChanged(_ sender: UISlider) {
         switch sender {
         case redSlider:
+            redValue = CGFloat(redSlider.value)
             labelsUpdate(for: .red)
         case greenSlider:
+            greenValue = CGFloat(greenSlider.value)
             labelsUpdate(for: .green)
         default:
+            blueValue = CGFloat(blueSlider.value)
             labelsUpdate(for: .blue)
         }
         
-        updateColor()
+        updateColorViewer()
     }
     
     @IBAction func doneButtonTapped() {
-        color = UIColor(
-            red: CGFloat(redSlider.value),
-            green: CGFloat(greenSlider.value),
-            blue: CGFloat(blueSlider.value),
-            alpha: 1
-        )
+        color = UIColor(red: redValue, green: greenValue, blue: blueValue, alpha: 1)
         delegate.setNewBackground(for: color)
         dismiss(animated: true)
     }
-    
-    // MARK: Private functions
-    private func updateColor() {
-        colorView.backgroundColor = UIColor(
-            red: CGFloat(redSlider.value),
-            green: CGFloat(greenSlider.value),
-            blue: CGFloat(blueSlider.value),
-            alpha: 1
-        )
-    }
 }
 
+// MARK: Private functions
 extension SettingsViewController {
     enum SliderType {
         case red, green, blue
     }
     
+    private func updateColorViewer() {
+        colorView.backgroundColor = UIColor(
+            red: CGFloat(redValue),
+            green: CGFloat(greenValue),
+            blue: CGFloat(blueValue),
+            alpha: 1
+        )
+    }
+    
+    private func initSliders() {
+        redSlider.value = Float(redValue)
+        greenSlider.value = Float(greenValue)
+        blueSlider.value = Float(blueValue)
+    }
+    
+    private func initLabels() {
+        labelsUpdate(for: .red)
+        labelsUpdate(for: .green)
+        labelsUpdate(for: .blue)
+    }
+    
     private func labelsUpdate(for sliderColor: SliderType) {
-        let value: Float
         switch sliderColor {
         case .red:
-            value = redSlider.value
-            redSliderLabel.text = String(format: "%.2f", value)
-            redSliderTF.text = String(format: "%.2f", value)
+            redSliderLabel.text = String(format: "%.2f", redValue)
+            redSliderTF.text = String(format: "%.2f", redValue)
         case .green:
-            value = greenSlider.value
-            greenSliderLabel.text = String(format: "%.2f", value)
-            greenSliderTF.text = String(format: "%.2f", value)
+            greenSliderLabel.text = String(format: "%.2f", greenValue)
+            greenSliderTF.text = String(format: "%.2f", greenValue)
         case .blue:
-            value = blueSlider.value
-            blueSliderLabel.text = String(format: "%.2f", value)
-            blueSliderTF.text = String(format: "%.2f", value)
+            blueSliderLabel.text = String(format: "%.2f", blueValue)
+            blueSliderTF.text = String(format: "%.2f", blueValue)
         }
     }
 }
