@@ -76,9 +76,9 @@ extension SettingsViewController {
     
     private func updateColorViewer() {
         colorView.backgroundColor = UIColor(
-            red: CGFloat(redValue),
-            green: CGFloat(greenValue),
-            blue: CGFloat(blueValue),
+            red: redValue,
+            green: greenValue,
+            blue: blueValue,
             alpha: 1
         )
     }
