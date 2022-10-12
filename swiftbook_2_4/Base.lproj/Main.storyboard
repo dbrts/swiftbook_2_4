@@ -160,6 +160,14 @@
                                     <constraint firstAttribute="height" constant="150" id="8Ls-4x-J1s"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Zq-UG-MaX">
+                                <rect key="frame" x="128" y="469.5" width="64.5" height="34.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="EBg-h8-PpF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -167,7 +175,9 @@
                             <constraint firstItem="atv-jb-32B" firstAttribute="top" secondItem="nuD-Lb-Va8" secondAttribute="bottom" constant="32" id="4WC-bQ-NsT"/>
                             <constraint firstItem="nuD-Lb-Va8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="OmY-Fl-vbw"/>
                             <constraint firstItem="nuD-Lb-Va8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="QIO-lD-msh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9Zq-UG-MaX" secondAttribute="bottom" constant="64" id="QdQ-2n-7lr"/>
                             <constraint firstItem="nuD-Lb-Va8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="d34-9V-9ch"/>
+                            <constraint firstItem="9Zq-UG-MaX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mQc-Lq-NIU"/>
                             <constraint firstItem="atv-jb-32B" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="pwN-mt-UeO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="atv-jb-32B" secondAttribute="trailing" constant="16" id="qVw-Nk-6Zd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nuD-Lb-Va8" secondAttribute="trailing" constant="16" id="rNq-hg-Ai6"/>

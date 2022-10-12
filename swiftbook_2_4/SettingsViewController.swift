@@ -25,6 +25,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var blueSliderTF: UITextField!
     
     var color: UIColor!
+    var delegate: SettingsViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,17 @@ class SettingsViewController: UIViewController {
         }
         
         updateColor()
+    }
+    
+    @IBAction func doneButtonTapped() {
+        color = UIColor(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
+            alpha: 1
+        )
+        delegate.setNewBackground(for: color)
+        dismiss(animated: true)
     }
     
     // MARK: Private functions
